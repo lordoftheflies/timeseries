@@ -10,18 +10,21 @@ INSTALLED_APPS = [
     'tests'
 ]
 
+DEBUG = True
 
-test_db = os.environ.get('TEST_DB_CONFIG', 'postgres')
-db_user = os.environ.get('TEST_DB_USER', os.environ.get('USER', ''))
-db_name = 'timerseries_tests' + os.environ.get('TEST_DB_NAME', '')
+test_db = os.environ.get('TEST_DB_CONFIG', 'test')
+db_user = os.environ.get('TEST_DB_USER', os.environ.get('USER', 'django'))
+db_name = 'timerseries_tests' + os.environ.get('TEST_DB_NAME', 'test')
 
 DB_CONFIGS = {
     # N.B. sqlite doesn't support DISTINCT ON for some reason... ???
-    'postgres': {
+    'test': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': db_name,
-        'USER': db_user,
-        'PASSWORD': ''
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'NAME': 'test',
+        'USER': 'django',
+        'PASSWORD': 'qwe123'
     }
 }
 
